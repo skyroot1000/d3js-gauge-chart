@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    #blueGaugeDiv {
+      position: absolute;
+      width: 30%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    canvas {
+      overflow: hidden;
+      display: inline-block;
+      background: #1A086F;
+      position: absolute;
+      z-index: -1;
+    }
+
+  </style>
+
+</head>
+
+<body translate="no">
+
+  <div class="container centered" id="blueGaugeDiv">
+    <span style="margin:10px;position:relative;display:inline" id="blueGauge"></span>
+  </div>
+
+
+  <script src="libs/d3.v4.min.js"></script>
+  <script src="scripts/d3script.js"></script>
+
+  <script>
+    // first
+    var blueGauge = renderBlueGaugeChart()
+      .svgHeight(500)
+      .svgWidth(500)
+      .data({ value: 100 })
+
+    window.blueGauge = blueGauge;
+
+    d3.select("#blueGauge")
+      .call(blueGauge);
+
+
+
+
+    // this simulates progresses
+    var values = [0, 100, 65, 32, 100, 0, 76, 10, 90]
+    var i = 0;
+
+
+    setTimeout(d => {
+      window.interval = setInterval(d => {
+        var index = i++ % values.length;
+        blueGauge.data({ value: values[index] })
+      }, 2000)
+    }, 3000)
+
+
+
+    particlesJS("blueGaugeDiv", {
+      "particles": {
+        "number": {
+          "value": 300,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        }
+      },
+    });
+  </script>
+
+</body>
+
+</html>
