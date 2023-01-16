@@ -50,13 +50,9 @@
     d3.select("#blueGauge")
       .call(blueGauge);
 
-
-
-
     // this simulates progresses
     var values = [0, 100, 65, 32, 100, 0, 76, 10, 90]
     var i = 0;
-
 
     setTimeout(d => {
       window.interval = setInterval(d => {
@@ -64,8 +60,6 @@
         blueGauge.data({ value: values[index] })
       }, 2000)
     }, 3000)
-
-
 
     particlesJS("blueGaugeDiv", {
       "particles": {
